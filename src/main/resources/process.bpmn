@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+  <bpmn:process id="FYPProcess" name="FYPProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEventProcessStarted" name="Process&#10;started">
+      <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0t994o0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEventProcessEnded" name="Process&#10;ended">
+      <bpmn:incoming>Flow_0tfmsmy</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEventProcessStarted" targetRef="Activity_07dbxgo" />
+    <bpmn:task id="Activity_0s6z303" name="Fill project description template">
+      <bpmn:incoming>Flow_0t994o0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sh5f6r</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0t994o0" sourceRef="StartEventProcessStarted" targetRef="Activity_0s6z303" />
+    <bpmn:task id="Activity_01xsggr" name="Studied by committee">
+      <bpmn:incoming>Flow_1sh5f6r</bpmn:incoming>
+      <bpmn:outgoing>Flow_140pc17</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1sh5f6r" sourceRef="Activity_0s6z303" targetRef="Activity_01xsggr" />
+    <bpmn:exclusiveGateway id="Gateway_0tjy1ht">
+      <bpmn:incoming>Flow_140pc17</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zrd2og</bpmn:outgoing>
+      <bpmn:outgoing>Flow_08lx1xq</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_140pc17" sourceRef="Activity_01xsggr" targetRef="Gateway_0tjy1ht" />
+    <bpmn:task id="Activity_07dbxgo" name="Project Published on moodle">
+      <bpmn:incoming>Flow_0zrd2og</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tfmsmy</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0zrd2og" name="meets FYP requirements" sourceRef="Gateway_0tjy1ht" targetRef="Activity_07dbxgo" />
+    <bpmn:task id="Activity_0hl9k6w" name="Send rejection email">
+      <bpmn:incoming>Flow_08lx1xq</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c9holn</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_08lx1xq" name="doesn&#39;t meet FYP requirements" sourceRef="Gateway_0tjy1ht" targetRef="Activity_0hl9k6w" />
+    <bpmn:endEvent id="Event_1jpy4s2">
+      <bpmn:incoming>Flow_0c9holn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0c9holn" sourceRef="Activity_0hl9k6w" targetRef="Event_1jpy4s2" />
+    <bpmn:sequenceFlow id="Flow_0tfmsmy" sourceRef="Activity_07dbxgo" targetRef="EndEventProcessEnded" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="FYPProcess">
+      <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="770" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="337.5" y="110" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t994o0_di" bpmnElement="Flow_0t994o0">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="260" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sh5f6r_di" bpmnElement="Flow_1sh5f6r">
+        <di:waypoint x="360" y="120" />
+        <di:waypoint x="420" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_140pc17_di" bpmnElement="Flow_140pc17">
+        <di:waypoint x="520" y="120" />
+        <di:waypoint x="585" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zrd2og_di" bpmnElement="Flow_0zrd2og">
+        <di:waypoint x="635" y="120" />
+        <di:waypoint x="770" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="670" y="86" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08lx1xq_di" bpmnElement="Flow_08lx1xq">
+        <di:waypoint x="610" y="145" />
+        <di:waypoint x="610" y="290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="616" y="215" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c9holn_di" bpmnElement="Flow_0c9holn">
+        <di:waypoint x="610" y="370" />
+        <di:waypoint x="610" y="462" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tfmsmy_di" bpmnElement="Flow_0tfmsmy">
+        <di:waypoint x="870" y="120" />
+        <di:waypoint x="982" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEventProcessStarted">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s6z303_di" bpmnElement="Activity_0s6z303">
+        <dc:Bounds x="260" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01xsggr_di" bpmnElement="Activity_01xsggr">
+        <dc:Bounds x="420" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0fkea3f_di" bpmnElement="EndEventProcessEnded">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="980" y="138" width="40" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0tjy1ht_di" bpmnElement="Gateway_0tjy1ht" isMarkerVisible="true">
+        <dc:Bounds x="585" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07dbxgo_di" bpmnElement="Activity_07dbxgo">
+        <dc:Bounds x="770" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jpy4s2_di" bpmnElement="Event_1jpy4s2">
+        <dc:Bounds x="592" y="462" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hl9k6w_di" bpmnElement="Activity_0hl9k6w">
+        <dc:Bounds x="560" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
